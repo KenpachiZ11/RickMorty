@@ -2,11 +2,11 @@ import { Routes, Route} from 'react-router-dom'
 
 import { Home } from './pages/Home'
 import { Hero } from './pages/Hero'
-import { Singlepage } from './pages/Singlepage'
+import { Singlepage } from './components/Cards/Singlepage'
 import { Contact } from './pages/Contact'
 import { Notfound } from './pages/Notfound'
 
-import { Layout } from './components/Layout'
+import { Layout } from './components/Layout/Layout'
 
 function App() {
   return (

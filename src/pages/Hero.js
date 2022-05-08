@@ -1,80 +1,63 @@
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
-import { Heroes } from "../components/Heroes"
-import Pagination from '../components/Pagination';
-
+import Cards from "../components/Cards/Cards"
+import Search from "../components/Search/Search"
+import Pagination from "../components/Pagination/Pagination"
 
 
 const Hero = () => {
-
-    const [posts, setPost] = useState([])
-    const [search, setSearch] = useState('')
+    const [post, setPost] = useState([])
     const [pageNumber, setPageNumber] = useState(1)
-    // const {info, results} = posts
+    const [search, setSearch] = useState('')
+    const {info, results} = post
 
-
-    const api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}`
-
+    const api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}`
+    
     useEffect(() => {
         (async function() {
-            let data = await fetch(api).then(res => res.json())
-            setPost(data.results)
+            const data = await fetch(api).then((res) => res.json())
+            setPost(data)
         })()
     }, [api])
-    // const getPosts = async () => {
-    //     const res = await fetch(getApi)
-    //     const data = await res.json()
-    //     setPosts(data.results)
-    // }
 
-    // useEffect(() => {
-    //     // getPosts()
-    //     fetch(api)
-    //         .then(res => res.json())
-    //         .then(data => setPost(data.results))
-    // }, [api])
-
-    const updateSearch = e => setSearch(e.target.value)
-    const filterHero = posts.filter(hero => {
-        return hero.name.toLowerCase().includes(search.toLowerCase())
-    })
 
     return (
-        <div className='box'>
-            <h1 className='title'>Hero</h1>
-            
-            <form className='form-search'>
-                <input
-                    placeholder='Search'
-                    className='form-input'
-                    type='text'
-                    onChange={updateSearch}
-                />
-            </form>
+        <div style={{
+            margin: '0 auto',
+            display: 'flex',
+            justifyContent: 'center'
+        }}>
+        <div>
+            <h1 style={{
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center',
+            }}>Hero
+        </h1>
+        
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center'
+        }}>
+            <Search setSearch={setSearch}/>
+        </div>
+        
 
-            <div className='info-hero'>
-                {
-                    filterHero.map(post => (
+        <div className='content_box'>
+            <Cards results={results}/>
+        </div>
 
-                        <Link 
-                            key={post.id} 
-                            to={`/hero/${post.id}`}
-                            style={{color: 'black'}}    
-                        >
-                            <Heroes
-                                name={post.name}
-                                image={post.image}
-                                status={post.status}
-                            />
-                        </Link>
-                    ))
-                }
-            </div>
-            {/* <Pagination
-                setPageNumber={setPageNumber}
-                pageNumber={pageNumber}
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center'
+        }}>
+            <Pagination 
                 info={info}
-            /> */}
+                pageNumber={pageNumber}
+                setPageNumber={setPageNumber}
+            />
+        </div>
+
+        </div>
         </div>
     )
 }
