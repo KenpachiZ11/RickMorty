@@ -1,0 +1,13 @@
+.form_search {
+    width: 30%;
+}
+.form_input {
+    padding: 5px 20px;
+    width: 100%;
+    margin-bottom: 30px;
+    border: 2px solid grey;
+} 
+.form_input:focus {
+    border-color: red;
+    outline: none;
+}

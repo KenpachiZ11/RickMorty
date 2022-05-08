@@ -1,0 +1,30 @@
+.content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    list-style-type: none;
+    cursor: pointer;
+}
+.content li {
+    display: block;
+    padding: 5px 15px;
+}
+.content li:hover {
+    color: greenyellow;
+}
+.next,
+.prev {
+    padding: 5px 15px;
+    border: 1px solid greenyellow;
+    color: white;
+}
+.next:hover,
+.prev:hover {
+    background: rgba(78, 78, 175, 0.375);
+}
+.active {
+    color: greenyellow;
+    font-size: 20px;
+    padding: 5px 15px;
+}
