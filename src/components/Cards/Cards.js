@@ -1,7 +1,7 @@
 import styles from '../Cards/Cards.module.css'
 import React from 'react'
-import { Card } from 'antd';
-import { Link } from 'react-router-dom';
+import { Card } from 'antd'
+import { Link } from 'react-router-dom'
 
 
 const { Meta } = Card;
