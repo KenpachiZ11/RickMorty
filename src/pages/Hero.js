@@ -2,15 +2,17 @@ import { useState, useEffect } from "react"
 import Cards from "../components/Cards/Cards"
 import Search from "../components/Search/Search"
 import Pagination from "../components/Pagination/Pagination"
+import Status from "../components/Select/Status"
 
 
 const Hero = () => {
     const [post, setPost] = useState([])
     const [pageNumber, setPageNumber] = useState(1)
     const [search, setSearch] = useState('')
+    const [select, setSelect] = useState('Alive')
     const {info, results} = post
 
-    const api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}`
+    const api = `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${search}&status=${select}`
     
     useEffect(() => {
         (async function() {
@@ -36,8 +38,10 @@ const Hero = () => {
         
         <div style={{
             display: 'flex',
-            justifyContent: 'center'
+            justifyContent: 'space-around',
+            marginBottom: '30px'
         }}>
+            <Status setSelect={setSelect} select={select}/>
             <Search setSearch={setSearch}/>
         </div>
         
